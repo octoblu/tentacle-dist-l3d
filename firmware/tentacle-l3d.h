@@ -1167,6 +1167,7 @@ class Pseudopod {
     int getBroadcastInterval();
     bool shouldBroadcastPins();
     bool isConfigured();
+    char* getCustomData();
     size_t requestConfiguration();
     size_t authenticate(const char* uuid, const char *token);
     size_t registerDevice();
@@ -1178,6 +1179,7 @@ class Pseudopod {
     pb_istream_t pbInput;
     Tentacle* tentacle;
     Action* messagePinActions;
+    char* customData;
     bool broadcastPins = false;
     bool configured = false;
     unsigned int broadcastInterval = BROADCAST_INTERVAL_DEFAULT;

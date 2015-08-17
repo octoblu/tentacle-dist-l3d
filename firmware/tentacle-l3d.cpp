@@ -2445,6 +2445,7 @@ Pseudopod::Pseudopod(Stream &input, Print &output, Tentacle& tentacle) {
 
   this->tentacle = &tentacle;
   messagePinActions = new Action[tentacle.getNumPins()];
+  currentMessage = "";
   resetPinActions();
 }
 
@@ -2458,6 +2459,10 @@ int Pseudopod::getBroadcastInterval() {
 
 bool Pseudopod::isConfigured() {
   return configured;
+}
+
+char* Pseudopod::getCustomData() {
+  return getCustomData;
 }
 
 void Pseudopod::resetPinActions() {
@@ -2565,6 +2570,10 @@ TentacleMessageTopic Pseudopod::readMessage() {
     configured = true;
     broadcastPins = currentMessage.broadcastPins;
     broadcastInterval = currentMessage.broadcastInterval;
+  }
+
+  if (currentMessage.has_customData) {
+    customData = currentMessage.customData;
   }
 
   return currentMessage.topic;
